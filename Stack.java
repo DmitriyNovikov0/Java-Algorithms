@@ -30,4 +30,11 @@ public class Stack {
     public int peek() {
         return stack[top];
     }
+
+    public void printStack(){
+        for(int i = 0; i < size; i++){
+            System.out.print(stack[i] + " ");
+        }
+        System.out.println("");
+    }
 }
