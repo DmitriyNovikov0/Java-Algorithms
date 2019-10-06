@@ -1,49 +1,76 @@
-package leson2;
+package leson3;
+import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) {
-        MyArray arr = new MyArray(10000);
+// 1 - задание
+        System.out.println("работа стека");
+        Stack s = new Stack(5);
+        s.push('a');
+        s.push('b');
+        s.push('c');
+        s.push('d');
+        s.push('e');
+        s.printStack();
+        //последний зашел первый вышел
+        while (!s.isEmpty()){
+            System.out.print(s.pop() + " ");
+        }
 
-// ------------  2 упражнение
-        for(int i = 1; i <= 10; i++){
-//            arr.insertElement(i); //Для проверки поиска
-              arr.insertElement((int)(Math.random() * 10)); //приведем тип double к int, можно былы использовать и класс обертку
+        System.out.println("");
+        System.out.println("работа очереди");
+        Queue q = new Queue(5);
+        q.insert(1);
+        q.insert(2);
+        q.insert(3);
+        q.insert(4);
+        q.insert(5);
+        q.printQueue();
+        //первый зашел первый вышел
+        while (!q.isEmpty()){
+            System.out.print(q.remove() + " ");
         }
-        System.out.println("В массиве " + arr.getSize() + " элеменетов");
-        arr.printArr();
-        System.out.println();
-        //можно было запрашивать номер элемента для удаления у пользователя... немного тораплюсь
-        System.out.println("Удаляем 7 элемент");
-        arr.deleteElement(7);
-        System.out.println("В массиве " + arr.getSize() + " элеменетов");
-        arr.printArr();
-        System.out.println();
-        System.out.println("поиск в массиве числа 9");
-        int fnd = 9;
-        int res = arr.findeElement(fnd);
-        if(res == 0){
-            System.out.println("В массиве нет числа " + fnd);
+
+        System.out.println("");
+        System.out.println("работа приоритетной очереди");
+        PriorityQueue pq = new PriorityQueue(5);
+        pq.insert(11);
+        pq.insert(15);
+        pq.insert(1);
+        pq.insert(7);
+        pq.insert(50);
+        pq.printQueue();
+        while (!pq.isEmpty()){
+            System.out.print(pq.remove() + " ");
         }
-        else {
-            System.out.println("В массиве " + fnd + " находится на " + res + " позиции");
+//2 задание
+        System.out.println("");
+        System.out.print("Введите строку: ");
+        Scanner in = new Scanner(System.in);
+        String tmpStr = in.nextLine();
+        char [] myCharArray = tmpStr.toCharArray ();
+//тут интересный вопрос, стоит ли создовать переменную или же можно вызвать 2 раза myCharArray.length, тут либо мы выиграем в производительности но потратим больше памяти
+//либо затратим меньше памяти но проиграем в производительности, что правильнее выбрать? в данном примере потери ничтьожны а бывают случаии когда теряются мегабайты
+        int length = myCharArray.length;
+        Stack s1 = new Stack(myCharArray.length);
+        for(int i = 0; i < length; i++){
+            s1.push(myCharArray[i]);
         }
-// ------------------- 3 упражнение
-        for(int i = 1; i <= 1000; i++){
-//            arr.insertElement(i); //Для проверки поиска
-            arr.insertElement((int)(Math.random() * 100)); //приведем тип double к int, можно былы использовать и класс обертку
+        //выводим перевернутую введеную строку
+        while (!s1.isEmpty()){
+            System.out.print(s1.pop());
         }
-//---------------------- 4 упражнение (признаюсь честно код класса скопипастил у Вас, немного не успиваю а д/з сдать нужно)\
-        long start = System.nanoTime();
-        Sort.sortBubble(arr.getArray());
-        long finish = System.nanoTime();
-        System.out.println("На сортировку пузырьковым методом ушло " + (finish - start) + " нано секунд");
-        start = System.nanoTime();
-        Sort.sortInsert(arr.getArray());
-        finish = System.nanoTime();
-        System.out.println("На сортировку методом вставки " + (finish - start) + " нано секунд");
-        start = System.nanoTime();
-        Sort.sortSelect(arr.getArray());
-        finish = System.nanoTime();
-        System.out.println("На сортировку методом выбора ушло " + (finish - start) + " нано секунд");
+// 3 задание
+//честно скопипастил код в интернете, код не до конца рабочий, буду разбираться завтра, сейчас не успеваю
+        System.out.println("");
+        Deque d = new Deque(5);
+        d.push_front(5);
+        d.push_back(3);
+        d.push_front(14);
+        d.push_back(8);
+        d.push_front(7);
+        d.printDeque();
+
+
     }
 }
